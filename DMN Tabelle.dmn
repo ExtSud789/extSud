@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" id="Definitions_09obyxp" name="DRD" namespace="http://camunda.org/schema/1.0/dmn">
+  <decision id="Decision_13nychf" name="Kundengruppe bestimmen">
+    <extensionElements>
+      <biodi:bounds x="300" y="138" width="180" height="80" />
+      <biodi:edge source="InputData_1urvqpo">
+        <biodi:waypoints x="200" y="407" />
+        <biodi:waypoints x="338" y="218" />
+      </biodi:edge>
+      <biodi:edge source="InputData_1045hzy">
+        <biodi:waypoints x="526" y="410" />
+        <biodi:waypoints x="445" y="218" />
+      </biodi:edge>
+      <biodi:edge source="InputData_0apl9lg">
+        <biodi:waypoints x="344" y="414" />
+        <biodi:waypoints x="390" y="220" />
+      </biodi:edge>
+    </extensionElements>
+    <informationRequirement>
+      <requiredInput href="#InputData_1urvqpo" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#InputData_1045hzy" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#InputData_0apl9lg" />
+    </informationRequirement>
+    <decisionTable id="decisionTable_1" hitPolicy="FIRST">
+      <input id="input_1" label="Inland">
+        <inputExpression id="inputExpression_1" typeRef="boolean">
+          <text>Inland</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_1c52o60" label="VdG">
+        <inputExpression id="LiteralExpression_038x0hp" typeRef="integer">
+          <text>VdG</text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_0tl4n3a" label="kum. Jahresumsatz">
+        <inputExpression id="LiteralExpression_1rj6z67" typeRef="integer">
+          <text>kumulierterJahresumsatz</text>
+        </inputExpression>
+      </input>
+      <output id="output_1" label="KG" name="Kundengruppe" typeRef="string">
+        <outputValues id="UnaryTests_1naya4c">
+          <text>"KG I","KG II","KG III","KG IV"</text>
+        </outputValues>
+      </output>
+      <rule id="DecisionRule_1853kgg">
+        <inputEntry id="UnaryTests_0uwpw5l">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_15hgeqy">
+          <text>&gt;=2</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_125wdgm">
+          <text>&gt;50000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_11bi2py">
+          <text>"KG I"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_04j8q6v">
+        <inputEntry id="UnaryTests_0lw0g7l">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1mybuvf">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_07iue0m">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_04dx3ge">
+          <text>"KG II"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0rbw2mx">
+        <inputEntry id="UnaryTests_0adyekm">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1wisrxa">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1y7s71u">
+          <text>&gt;=100000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1qbok2r">
+          <text>"KG III"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1cfyxcf">
+        <inputEntry id="UnaryTests_0zwx630">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_12gknhy">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0uliwr7">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0w16i0r">
+          <text>"KG IV"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_1urvqpo" name="Inland">
+    <extensionElements>
+      <biodi:bounds x="130" y="407" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="InputData_0apl9lg" name="Variabilität der Geschäftsfelder">
+    <extensionElements>
+      <biodi:bounds x="296" y="414" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="InputData_1045hzy" name="kumulierter Jahresumsatz">
+    <extensionElements>
+      <biodi:bounds x="473" y="410" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+</definitions>

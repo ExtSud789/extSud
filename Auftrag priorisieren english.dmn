@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/DMN/20151101/dmn.xsd" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/1.0" id="Definitions_13jfvou" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="3.3.5">
+  <decision id="D" name="priority">
+    <extensionElements>
+      <biodi:bounds x="429" y="84" width="180" height="80" />
+      <biodi:edge source="InputData_0tqav08">
+        <biodi:waypoints x="366" y="280" />
+        <biodi:waypoints x="481" y="164" />
+      </biodi:edge>
+      <biodi:edge source="InputData_1iv6i4e">
+        <biodi:waypoints x="557" y="287" />
+        <biodi:waypoints x="533" y="169" />
+      </biodi:edge>
+      <biodi:edge source="InputData_1q8pm6b">
+        <biodi:waypoints x="757" y="291" />
+        <biodi:waypoints x="575" y="164" />
+      </biodi:edge>
+      <biodi:edge source="KnowledgeSource_1eob3c4">
+        <biodi:waypoints x="256" y="118" />
+        <biodi:waypoints x="429" y="120" />
+      </biodi:edge>
+      <biodi:edge source="BusinessKnowledgeModel_0wt1ca2">
+        <biodi:waypoints x="816" y="132" />
+        <biodi:waypoints x="609" y="129" />
+      </biodi:edge>
+    </extensionElements>
+    <informationRequirement>
+      <requiredInput href="#InputData_0tqav08" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#InputData_1iv6i4e" />
+    </informationRequirement>
+    <informationRequirement>
+      <requiredInput href="#InputData_1q8pm6b" />
+    </informationRequirement>
+    <knowledgeRequirement>
+      <requiredKnowledge href="#BusinessKnowledgeModel_0wt1ca2" />
+    </knowledgeRequirement>
+    <authorityRequirement>
+      <requiredAuthority href="#KnowledgeSource_1eob3c4" />
+    </authorityRequirement>
+    <decisionTable id="decisionTable_1">
+      <input id="input_1" label="category">
+        <inputExpression id="inputExpression_1" typeRef="string">
+          <text></text>
+        </inputExpression>
+        <inputValues id="UnaryTests_1bwa6bg">
+          <text>"business","private"</text>
+        </inputValues>
+      </input>
+      <input id="InputClause_03m9jc6" label="newCustomer">
+        <inputExpression id="LiteralExpression_0iw5umr" typeRef="boolean">
+          <text></text>
+        </inputExpression>
+      </input>
+      <input id="InputClause_08i0jcy" label="distanceInkm">
+        <inputExpression id="LiteralExpression_1eg7aeg" typeRef="integer">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="output_1" label="priority" typeRef="integer" />
+      <rule id="DecisionRule_1555x08">
+        <description>low costs for transport</description>
+        <inputEntry id="UnaryTests_1v7qwel">
+          <text>"business"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0sy1kyp">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1pphqs1">
+          <text>[1..150[</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_09ff958">
+          <text>2</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1nyjgfx">
+        <inputEntry id="UnaryTests_0yi2flf">
+          <text>"business"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0e3ajzs">
+          <text>true</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0kkl7vr">
+          <text>&gt;= 150</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0s95k5a">
+          <text>3</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_10csiza">
+        <description></description>
+        <inputEntry id="UnaryTests_1r3mdyv">
+          <text>"private"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_19q9xkv">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1h6enkg">
+          <text>&lt; 150</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_141cguq">
+          <text>3</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1fyj9br">
+        <description>high effort, while low profit is expected</description>
+        <inputEntry id="UnaryTests_17ij3nx">
+          <text>"private"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_18ep55o">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1gq2irt">
+          <text>&gt;= 150</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_028yjke">
+          <text>4</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1uecdbc">
+        <description>loyal customer, low costs for transport</description>
+        <inputEntry id="UnaryTests_19r0ejv">
+          <text>"business"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0kcc5u5">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1wkzqsu">
+          <text>[1..150[</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_026wr72">
+          <text>1</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0js7yhj">
+        <inputEntry id="UnaryTests_0uf62nv">
+          <text>"business"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1fdxc5b">
+          <text>false</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1g3x7pn">
+          <text>&gt;= 150</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0c4ad2p">
+          <text>2</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_0tqav08" name="category">
+    <extensionElements>
+      <biodi:bounds x="281" y="280" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="InputData_1iv6i4e" name="new">
+    <extensionElements>
+      <biodi:bounds x="498" y="287" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <inputData id="InputData_1q8pm6b" name="distance">
+    <extensionElements>
+      <biodi:bounds x="726" y="291" width="125" height="45" />
+    </extensionElements>
+  </inputData>
+  <knowledgeSource id="KnowledgeSource_1eob3c4" name="guidelines">
+    <extensionElements>
+      <biodi:bounds x="156" y="86" width="100" height="63" />
+    </extensionElements>
+  </knowledgeSource>
+  <businessKnowledgeModel id="BusinessKnowledgeModel_0wt1ca2" name="calculating distance">
+    <extensionElements>
+      <biodi:bounds x="816" y="111" width="135" height="46" />
+    </extensionElements>
+  </businessKnowledgeModel>
+</definitions>
